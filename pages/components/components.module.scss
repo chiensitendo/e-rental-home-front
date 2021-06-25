@@ -1,0 +1,21 @@
+@import "@/styles/_variables.scss";
+.Components {
+    padding: 50px;
+    h1 {
+        font-size: 50px;
+    }
+    .container {
+        width: 100%;
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+
+    @media screen and (max-width: $break-point-md) {
+        padding: 10px;
+        h1 {
+            font-size: 30px;
+        }        
+    }
+}
+

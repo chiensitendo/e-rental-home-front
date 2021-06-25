@@ -1,0 +1,16 @@
+@import "@/styles/_variables.scss";
+
+.DefaultButton {
+    & button {
+        border-radius: 30px;
+        padding: 6.4px 50px;
+    }
+    & .primary {
+        background-color: $primary_color;
+        border-color: $primary_color;
+        &:hover,&:focus{
+            background-color: $primary_color_400;
+            border-color: $primary_color_400;
+        }
+    }
+}
