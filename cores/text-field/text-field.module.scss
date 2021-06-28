@@ -1,0 +1,8 @@
+@import "@/styles/_variables.scss";
+
+.TextField {
+    label {
+        color: $primary_color;
+        font-weight: bold;
+    }
+}

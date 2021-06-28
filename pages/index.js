@@ -5,7 +5,8 @@ export default function Home() {
     <div className="container">
       <Head>
         <title>E-Rental Home</title>
-        <link rel="icon" href="/favicon.ico" />
+        {/* <link rel="icon" href="/favicon.ico" /> */}
+        <link rel="icon" href="/app_icon.png" />
       </Head>
 
       <main>

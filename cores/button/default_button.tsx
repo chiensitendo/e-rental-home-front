@@ -3,10 +3,17 @@ import { Button } from 'antd';
 import classnames from "classnames";
 
 const DefaultButton = (props: Props) => {
-    console.log(props);
-    const {className, text, children} = props;
+    const {className, text, children, htmlType, type, onClick} = props;
+    let ty = (type)? type: "full";
+    let buttonType = htmlType ? htmlType: "button";
     return <div className = {classnames(className, styles.DefaultButton)}>
-                <Button className = {styles.primary} type = "primary" size = "large">{children ? children: text}</Button>
+                <Button 
+                    className = {classnames({[styles.primary]: ty === "full", [styles.outlinePrimary]: ty === "outline"})} 
+                    type = {ty === "outline" ? "default": "primary"} 
+                    size = "large"
+                    htmlType = {buttonType}
+                    onClick = {onClick && onClick}
+                >{children ? children: text}</Button>
         </div>
 
 }
@@ -17,4 +24,7 @@ type Props = {
     className?: any;
     text?: string;
     children?: any;
+    type?: "outline" | "full";
+    htmlType?: "button" | "submit" |  "reset";
+    onClick?: () => void;
 }
