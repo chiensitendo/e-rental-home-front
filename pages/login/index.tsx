@@ -3,8 +3,8 @@ import Head from "next/head";
 import { Form, Input, Checkbox } from 'antd';
 import DefaultButton from "@/cores/button/default_button";
 import TextField from "@/cores/text-field/text-field";
-import { createRules } from "pages/libs/ultility";
-import { RULE_TYPE } from "pages/libs/types";
+import { createRules } from "libs/ultility";
+import { RULE_TYPE } from "libs/types";
 import {  NextRouter,useRouter } from "next/dist/client/router";
 
 const Login = (props) => {

@@ -2,7 +2,7 @@ import { Rule } from "rc-field-form/lib/interface";
 import style from "./e-select.module.scss";
 import { Form, Select } from 'antd';
 import classNames from 'classnames';
-import { Choice } from "pages/libs/types";
+import { Choice } from "libs/types";
 
 const ESelect = (props: Props) => {
     const {className, label, name, rules, placeholder, items} = props;
