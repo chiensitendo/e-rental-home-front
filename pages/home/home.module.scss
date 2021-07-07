@@ -1,76 +1,152 @@
 @import "@/styles/_variables.scss";
+
+.background {
+    position: relative;
+
+    .backgroundCurve {
+        width: 100%;
+    }
+
+    .logo {
+        position: absolute;
+        top: 50px;
+        left: 20px;
+        width: 100%;
+        min-width: 50px;
+        max-width: 100px;
+    }
+
+    .menu {
+        position: absolute;
+        width: 100%;
+        min-width: 100px;
+        max-width: 150px;
+        top: 0px;
+        right: 50px;
+        .menuRow {
+            img {
+                width: 100%;
+                min-width: 5px;
+                max-width: 30px;
+            }               
+            position: static;
+        }
+    }
+
+    .phone {
+        position: absolute;
+        top: 100px;
+        left: 20px;
+        min-width: 50px;
+        max-width: 200px;
+        width: 100%;
+    }
+
+    .cornerTopCenter {
+        position: absolute;
+        top: 0px;
+        left: 80px;
+        min-width: 10px;
+        max-width: 120px;
+        width: 100%;
+    }
+
+    .slogan {
+        position: absolute;
+        top: 250px;
+        padding-left: 20px;
+        font-size: 0.5rem;
+        width: 100%;
+        min-width: 100px;
+
+        .topic1 {
+            font-size: 1rem;
+            background-color: $primary_color_600;
+            padding: 5px;
+            margin-bottom: 0;
+            color: $background_color_1;
+        }
+
+        .topic2 {
+            font-size: 1rem;
+            color: $secondary_color;
+        }
+    }
+
+    .cornerBottomLeft {
+        position: absolute;
+        left: 20px;
+        bottom: -250px;
+        min-width: 10px;
+        max-width: 120px;
+        width: 100%;
+    }
+}
+
 @media screen and (min-width: $break-point-md) {
     .background {
-        position: relative;
-        height: 100%;
-
-        .backgroundCurve {
-                width: 100%;
-                object-fit: fill;
-        }
 
         .logo {
-            position: absolute;
-            top: 100px;
-            left: 100px;
-            width: 10rem;
+            top: 50px;
+            left: 20px;
+            width: 100%;
+            min-width: 100px;
+            max-width: 150px;
         }
-
+    
         .menu {
-            position: absolute;
-            width: 200px;
-            top: 0px;
-            right: 200px;
+            min-width: 150px;
+            max-width: 250px;
             .menuRow {
                 img {
-                    width: 40px;
+                    min-width: 10px;
+                    max-width: 50px;
                 }               
-                position: static;
             }
-        }
-
-        .phone {
-            position: absolute;
-            right: 0px;
-            bottom: 10px;
-            width: 55%;
-            height: auto;
-        
-        }
-
-        .cornerBottomLeft {
-            position: absolute;
-            left: 0px;
-            bottom: 0px;
-            min-width: 20%;
-            width: auto;
-            height: auto;
         }
 
         .cornerTopCenter {
-            position: absolute;
-            top: 0px;
             left: 45%;
-            min-width: 20%;
-            width: auto;
-            height: auto;
+            width: 20%;
+            min-width: none;
+            max-width: none;
+        }
+
+        .phone {
+            bottom: 100px;
+            right: 0px;
+            width: 50%;
+            min-width: none;
+            max-width: none;
+            left: initial;
+            top: initial;
         }
 
         .slogan {
-            position: absolute;
-            top: 35%;
-            left: 100px;
-
-            .topic1 {
-                background-color: $primary_color_600;
-                padding: 5px;
-                margin-bottom: 0;
-                color: $background_color_1;
-            }
-
-            .topic2 {
-                color: $secondary_color;
+            font-size: 1rem; 
+            .topic1, .topic2 {
+                font-size: 1.5rem;
             }
         }
+
+        .cornerBottomLeft {
+            bottom: 0;
+            left: 0;
+            min-width: none;
+            max-width: none;
+            width: 20%;
+        }
     }
+}
+
+@media (min-height: $break-point-lg) {
+    .background {
+        .slogan {
+            top: 150px;
+            font-size: 1rem; 
+            .topic1, .topic2 {
+                font-size: 1.3rem;
+            }
+    }
+  }
 }
