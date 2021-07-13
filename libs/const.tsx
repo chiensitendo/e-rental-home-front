@@ -1,5 +1,10 @@
 import { Choice, Province } from "./types";
 
+
+export const SERVER_API_URL = `${process.env.NEXT_PUBLIC_SERVER_URL}/api`;
+
+export const LOCALSTORAGE_KEY = process.env.NEXT_PUBLIC_LOCAL_STORAGE;
+
 export const GENDERS: Choice[] = [
     {id: 1, label: "Nam", value: 1},
     {id: 2, label: "Nữ", value: 2},

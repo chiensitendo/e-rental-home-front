@@ -1,3 +1,4 @@
+import { notification } from "antd";
 import { Rule } from "antd/lib/form";
 import { RULE_TYPE } from "./types";
 
@@ -11,3 +12,11 @@ export const createRules = (name: string, types: number[]): Rule[] => {
     }
     return rules;
 }
+
+export const openNotificationWithIcon = (type, message, description) => {
+    notification[type]({
+      message: message,
+      description:
+      description,
+    });
+  };

@@ -1,7 +1,7 @@
 import { Col, Row } from "antd";
 import React from "react";
 import style from "./home.module.scss";
-
+import withAuth from "auth/auth";
 const Home = (props) => {
     return <div className={style.background}>
         <img className={style.backgroundCurve} src="/icons/home/home.svg"></img>
@@ -51,4 +51,4 @@ const Home = (props) => {
     </div>;
 
 }
-export default Home;
+export default withAuth(Home);

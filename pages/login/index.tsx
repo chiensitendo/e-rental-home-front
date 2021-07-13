@@ -3,9 +3,12 @@ import Head from "next/head";
 import { Form, Input, Checkbox } from 'antd';
 import DefaultButton from "@/cores/button/default_button";
 import TextField from "@/cores/text-field/text-field";
-import { createRules } from "libs/ultility";
-import { RULE_TYPE } from "libs/types";
+import { createRules, openNotificationWithIcon } from "libs/ultility";
+import { LocalStorageModel, RULE_TYPE } from "libs/types";
 import {  NextRouter,useRouter } from "next/dist/client/router";
+import { ownerLogin } from "apis/owner-api";
+import { LoginResponse } from "apis/models/login-response";
+import { LOCALSTORAGE_KEY } from "libs/const";
 
 const Login = (props) => {
 
@@ -13,6 +16,33 @@ const Login = (props) => {
 
     const onFinish = (values: any) => {
         console.log('Success:', values);
+        ownerLogin({
+            loginId: values.username,
+            password: values.password
+        }).then(res => {
+            if (res && res.data){
+                let data: LoginResponse = res.data as LoginResponse;
+                const expireTimestamp = new Date().getTime() + data.expiredTime;
+                let user: LocalStorageModel = {
+                    id: data.id,
+                    token: data.token,
+                    tokenType: data.tokenType,
+                    role: data.role,
+                    expiredTime: expireTimestamp
+                }
+                localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(user));
+                router.push("/home");
+            }
+            openNotificationWithIcon('success', "Đăng nhập thành công! ", "");
+        }).catch((err) => {
+            if (!err.code || !err.message){
+                openNotificationWithIcon('error', "Lỗi hệ thống! ", "");
+            } else {
+                openNotificationWithIcon('error', err.message, "");
+            }
+            openNotificationWithIcon('error', "Đăng nhập thất bại! ", "");
+        });
+        
     };
 
     const onFinishFailed = (errorInfo: any) => {
