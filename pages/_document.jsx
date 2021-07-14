@@ -16,6 +16,13 @@ class MyDocument extends NextDocument {
           <link rel="icon" href="/app_icon.png" />
         </Head>
         <body>
+        <div className="spinner_container" id = "spin_id">
+          <div className="spinner">
+              <div className="spinner-item"></div>
+              <div className="spinner-item"></div>
+              <div className="spinner-item"></div>
+            </div>
+        </div>
           <Main />
           <NextScript />
         </body>

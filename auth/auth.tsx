@@ -35,3 +35,33 @@ export default function withAuth(WrappedComponent) {
         return isAuth && <WrappedComponent />;
     }
 }
+
+export function withLogin(WrappedComponent) {
+    
+    return () => {
+        const router: NextRouter= useRouter();
+        const [isUnAuth, setIsUnAuth] = React.useState(false);
+        React.useEffect(() => {
+            try {
+                let obj = localStorage.getItem(LOCALSTORAGE_KEY);
+                
+                if (obj === null){
+                    setIsUnAuth(true);
+                } else {
+                    let user: LocalStorageModel = JSON.parse(obj);
+                    const currentTimestamp = new Date().getTime();
+                    if (currentTimestamp <= user.expiredTime) {
+                        setIsUnAuth(false);
+                        router.push("/home");
+                    } else {
+                        openNotificationWithIcon('error', "Token hết hạn!", "");
+                        setIsUnAuth(true);
+                    }
+                }      
+            } catch(e){
+                setIsUnAuth(true);
+            }
+        },[]);
+        return isUnAuth && <WrappedComponent />;
+    }
+}

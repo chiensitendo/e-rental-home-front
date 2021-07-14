@@ -30,6 +30,11 @@
                     text-align: center;
                 }
             }
+            .formContainer {
+                .submitButton {
+                    padding-top: 20px !important;                    
+                }
+            }
         }
     }
     @media screen and (max-width: $break-point-md) {

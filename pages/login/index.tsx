@@ -9,6 +9,7 @@ import {  NextRouter,useRouter } from "next/dist/client/router";
 import { ownerLogin } from "apis/owner-api";
 import { LoginResponse } from "apis/models/login-response";
 import { LOCALSTORAGE_KEY } from "libs/const";
+import { withLogin } from "auth/auth";
 
 const Login = (props) => {
 
@@ -71,9 +72,9 @@ const Login = (props) => {
                                 onFinishFailed={onFinishFailed}
                             >
                                 <TextField 
-                                    label="Username"
+                                    label="Username hoặc Email"
                                     name="username"
-                                    rules={createRules("username", [RULE_TYPE.REQUIRED])}                                    
+                                    rules={createRules("username hoặc email", [RULE_TYPE.REQUIRED])}                                    
                                 ><Input /></TextField>
                                 <TextField 
                                     label="Mật khẩu"
@@ -93,4 +94,4 @@ const Login = (props) => {
             </div>
 }
 
-export default Login;
+export default withLogin(Login);

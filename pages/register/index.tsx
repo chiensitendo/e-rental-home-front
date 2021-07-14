@@ -4,15 +4,39 @@ import { Form, Input, Checkbox } from 'antd';
 import DefaultButton from "@/cores/button/default_button";
 import TextField from "@/cores/text-field/text-field";
 import { RULE_TYPE } from "libs/types";
-import { createRules } from "libs/ultility";
+import { createRules, openNotificationWithIcon } from "libs/ultility";
 import {  NextRouter,useRouter } from "next/dist/client/router";
 import ESelect from "@/cores/button/select/e-select";
 import { GENDERS, PROVINCES } from "libs/const";
+import { ownerRegister } from "apis/owner-api";
+import { SignUpRequest } from "apis/models/signup-request";
 
 const Register = (props) => {
     const router: NextRouter= useRouter();
     const onFinish = (values: any) => {
         console.log('Success:', values);
+        let req: SignUpRequest = {
+            email: values.email,
+            username: values.username,
+            address: values.address,
+            firstName: values.firstname,
+            gender: values.gender,
+            lastName: values.lastname,
+            password: values.password,
+            provinceId: values.province
+        }
+        ownerRegister(req).then((res) => {
+            console.log(res);
+            router.push("/login");
+            openNotificationWithIcon('success', "Đăng ký thành công! ", "");
+        }).catch(err => {
+            if (!err.code || !err.message){
+                openNotificationWithIcon('error', "Lỗi hệ thống! ", "");
+            } else {
+                openNotificationWithIcon('error', err.message, "");
+            }
+            openNotificationWithIcon('error', "Đăng ký thất bại! ", "");
+        });
     };
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
@@ -71,15 +95,20 @@ const Register = (props) => {
                                     rules={createRules("username", [RULE_TYPE.REQUIRED])}                                    
                                 ><Input /></TextField>
                                 <TextField 
+                                    label="Email"
+                                    name="email"
+                                    rules={createRules("email", [RULE_TYPE.REQUIRED, RULE_TYPE.EMAIL])}                                    
+                                ><Input /></TextField>
+                                <TextField 
                                     label="Mật khẩu"
                                     name="password"
                                     rules={createRules("mật khẩu", [RULE_TYPE.REQUIRED, RULE_TYPE.PASSWORD])}                                 
                                 ><Input.Password /></TextField>
-                                <Form.Item name="remember" valuePropName="checked">
+                                <Form.Item name="remember" valuePropName="checked" rules={createRules("Đồng ý với các điều khoản và dịch vụ", [RULE_TYPE.CHECKBOX_REQUIRED])} >
                                     <Checkbox className = "checkbox">Đồng ý với các điều khoản và dịch vụ</Checkbox>
                                 </Form.Item>
                                 <Form.Item>
-                                    <DefaultButton htmlType = "submit">Đăng nhập</DefaultButton>
+                                    <DefaultButton  className = {style.submitButton} htmlType = "submit">Đăng nhập</DefaultButton>
                                 </Form.Item>
                             </Form>
                         </div>
