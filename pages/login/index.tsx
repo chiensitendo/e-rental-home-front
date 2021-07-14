@@ -8,8 +8,9 @@ import { LocalStorageModel, RULE_TYPE } from "libs/types";
 import {  NextRouter,useRouter } from "next/dist/client/router";
 import { ownerLogin } from "apis/owner-api";
 import { LoginResponse } from "apis/models/login-response";
-import { LOCALSTORAGE_KEY } from "libs/const";
+import { getGoogleOauth2Url, LOCALSTORAGE_KEY } from "libs/const";
 import { withLogin } from "auth/auth";
+import { GoogleLoginButton } from "react-social-login-buttons";
 
 const Login = (props) => {
 
@@ -63,6 +64,13 @@ const Login = (props) => {
                         <div className = {style.forwardContainer}>
                              <p>Chưa có tài khoản?</p>
                             <DefaultButton type = "outline" onClick = {() => {router.push("/register")}}>Đăng ký</DefaultButton>
+                            <div>
+                                <GoogleLoginButton onClick={() => {
+                                    window.location.protocol
+                                    const url = getGoogleOauth2Url(window.location.protocol + "//" +window.location.host);
+                                    window.location.href = url;
+                                }} />
+                            </div>
                         </div>
                         <div className = {style.formContainer}>
                             <Form 

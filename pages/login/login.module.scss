@@ -28,6 +28,9 @@
                     font-weight: bold;
                     text-align: center;
                 }
+                & > div {
+                    padding: 20px 0;
+                }
             }
         }
     }

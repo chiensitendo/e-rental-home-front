@@ -1,9 +1,14 @@
+import { useRouter } from "next/router";
 import { Choice, Province } from "./types";
 
 
 export const SERVER_API_URL = `${process.env.NEXT_PUBLIC_SERVER_URL}/api`;
 
 export const LOCALSTORAGE_KEY = process.env.NEXT_PUBLIC_LOCAL_STORAGE;
+
+export const getGoogleOauth2Url = (hostname: string) => {
+    return `${process.env.NEXT_PUBLIC_SERVER_URL}/api/oauth2/authorize/google?redirect_uri=${hostname}/oauth2/redirect`;
+}
 
 export const GENDERS: Choice[] = [
     {id: 1, label: "Nam", value: 1},
