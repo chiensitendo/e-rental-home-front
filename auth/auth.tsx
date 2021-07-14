@@ -24,6 +24,7 @@ export default function withAuth(WrappedComponent) {
                         setIsAuth(true);
                     } else {
                         openNotificationWithIcon('error', "Token hết hạn!", "");
+                        localStorage.removeItem(LOCALSTORAGE_KEY);
                         setIsAuth(false);
                         router.push("/login");
                     }
@@ -55,6 +56,7 @@ export function withLogin(WrappedComponent) {
                         router.push("/home");
                     } else {
                         openNotificationWithIcon('error', "Token hết hạn!", "");
+                        localStorage.removeItem(LOCALSTORAGE_KEY);
                         setIsUnAuth(true);
                     }
                 }      
