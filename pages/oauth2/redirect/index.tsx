@@ -10,14 +10,15 @@ const Oauth2Redirect = (props) => {
     React.useEffect(() => {
         var decoded: any = jwt_decode(props.token);
         let roles: Array<any> = decoded.role;
-        if (!props?.token || !roles || !roles[0]){
+        if (!props?.token || !roles || !roles[0] || !roles[0].authority || !decoded.tokenType ){
             router.push("/login");
         } else {
+            const expireTimestamp = new Date().getTime() + +decoded.exp;
             let user: LocalStorageModel = {
-                tokenType: "Bearer ",
-                id: 1,
+                tokenType: decoded.tokenType + " ",
+                id: +decoded.id,
                 role: roles[0].authority,
-                expiredTime: +decoded.exp *1000,
+                expiredTime: expireTimestamp,
                 token: props.token
             }
             localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(user));
