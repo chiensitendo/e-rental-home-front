@@ -2,7 +2,36 @@ import { Col, Row } from "antd";
 import React from "react";
 import style from "./home.module.scss";
 import withAuth from "auth/auth";
+import { LOCALSTORAGE_KEY } from "libs/const";
+import { LocalStorageModel } from "libs/types";
+import UpdateOwnerInfo from "components/update-owner-info";
 const Home = (props) => {
+    const [hasInfo, setHasInfo] = React.useState(false);
+    React.useEffect(() => {
+        let obj = localStorage.getItem(LOCALSTORAGE_KEY);
+        if (!obj){
+            setHasInfo(false);
+            return;
+        }
+        let user: LocalStorageModel = JSON.parse(obj);
+        if (!user){
+            setHasInfo(false);
+            return;
+        }
+        setHasInfo(user.hasInfo);
+    },[]);
+    // const hasInfo = React.useMemo(() => {
+    //     let obj = localStorage.getItem(LOCALSTORAGE_KEY);
+    //     if (!obj){
+    //         return false;
+    //     }
+    //     let user: LocalStorageModel = JSON.parse(obj);
+    //     if (!user){
+    //         return false;
+    //     }
+    //     return user.hasInfo;
+    // },[localStorage]);
+
     return <div className={style.background}>
         <img className={style.backgroundCurve} src="/icons/home/home.svg"></img>
         <img className={style.logo} src="/icons/home/logo.svg"></img>
@@ -47,7 +76,11 @@ const Home = (props) => {
         </div>
         
         <img className={style.cornerBottomLeft} src="icons/home/corner-bottom-left.svg"></img>
-
+        {!hasInfo &&<UpdateOwnerInfo isVisible = {!hasInfo} 
+            onCancel = {() => {
+                
+                setHasInfo(true)}}
+        />}
     </div>;
 
 }

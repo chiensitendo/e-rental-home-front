@@ -30,7 +30,12 @@ const Login = (props) => {
                     token: data.token,
                     tokenType: data.tokenType,
                     role: data.role,
-                    expiredTime: expireTimestamp
+                    expiredTime: expireTimestamp,
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    hasInfo: data.hasInfo,
+                    userName: data.userName,
+                    email: !data.email ? data.userName : data.email
                 }
                 localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(user));
                 router.push("/home");

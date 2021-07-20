@@ -26,7 +26,6 @@ const Register = (props) => {
             provinceId: values.province
         }
         ownerRegister(req).then((res) => {
-            console.log(res);
             router.push("/login");
             openNotificationWithIcon('success', "Đăng ký thành công! ", "");
         }).catch(err => {

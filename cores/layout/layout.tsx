@@ -22,7 +22,6 @@ export default function Layout({ children }) {
     const onClose = () => {
         setShowMenu(false);
       };
-      console.log(showMenu);
     return <div className = {style.Layout}>
                 <div className = {style.Header}>
                     <div className = {style.Logo}>

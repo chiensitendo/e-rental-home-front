@@ -22,4 +22,9 @@ export type LocalStorageModel = {
     tokenType: string;
     role: string;
     expiredTime: number;
+    userName: string;
+    firstName: string;
+    lastName: string;
+    hasInfo: boolean;
+    email: string;
 }
