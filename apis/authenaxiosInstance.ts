@@ -23,7 +23,7 @@ authenAxiosInstance.interceptors.request.use(
             'Content-Type': 'application/json;charset=UTF-8',
             'Access-Control-Allow-Origin': "*",
             'Access-Control-Allow-Methods': 'GET,POST,DELETE,PUT,OPTIONS',
-            'Authorization': `${user.tokenType}${user.token}`
+            'Authorization': `${user.tokenType} ${user.token}`
         }
         document.getElementById("spin_id").style.display = "flex";
         return request;

@@ -6,7 +6,8 @@ import React from "react";
 import SubMenu from "antd/lib/menu/SubMenu";
 import { NextRouter, useRouter } from "next/router";
 import DefaultButton from "../button/default_button";
-export default function Layout({ children }) {
+export default function Layout(props: Props) {
+    const {children, isOverfollow} = props;
     const [showMenu, setShowMenu] = React.useState<boolean>(false);
     const router: NextRouter = useRouter();
     const url = React.useMemo(() => {
@@ -22,7 +23,7 @@ export default function Layout({ children }) {
     const onClose = () => {
         setShowMenu(false);
       };
-    return <div className = {style.Layout}>
+    return <div className = {style.Layout} style = {{overflow: (!isOverfollow)?"hidden": "auto"}}>
                 <div className = {style.Header}>
                     <div className = {style.Logo}>
                         <div className = {classNames("sp_block", style.spSpace)}></div>
@@ -58,7 +59,8 @@ export default function Layout({ children }) {
                         onClose={onClose}
                         visible={showMenu}
                         getContainer={false}
-                        style={{ position: 'absolute' }}
+                        className = {style.Drawer}
+                        style={{ position: 'fixed' }}
                         >
                         <Menu className = {style.MenuList} mode = "inline" selectedKeys={[url]} defaultOpenKeys = {['sub2']}>
                             <Menu.Item key="/" icon={<HomeOutlined />} onClick = {() => {
@@ -89,4 +91,9 @@ export default function Layout({ children }) {
                     {children}
                 </div>
         </div>
+  }
+
+  type Props = {
+      isOverfollow?: boolean;
+      children?: any;
   }

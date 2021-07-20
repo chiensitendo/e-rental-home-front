@@ -6,7 +6,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    overflow: hidden;
     .Header {
         max-height: 100px;
         display: flex;
@@ -37,15 +36,18 @@
 
         }
     }
+    .Drawer {
+        display: none;
+    }
     div[class = "ant-drawer-body"]{
         padding: 0;
     }
     .logoutBtn {
         padding: 20px;
     }
-    .Children {
+    // .Children {
         
-    }
+    // }
 }
 
 @media screen and (max-width: $break-point-md) {
@@ -61,6 +63,9 @@
                     width: 80px;
                 }
             }
+        }
+        .Drawer {
+            display: block;
         }
     }
 }

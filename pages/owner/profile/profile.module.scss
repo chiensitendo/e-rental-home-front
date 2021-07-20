@@ -1,0 +1,35 @@
+@import "@/styles/_variables.scss";
+
+.OwnerProfile {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & > div {
+        width: 100%;
+        max-width: $break-point-md;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: auto;
+        row-gap: 20px;
+        .Card {
+            width: 100%;
+            border: 1px solid $primary_color_600;
+            & > div[class="ant-card-body"]{
+                background-color: $background_color_3;
+            }
+            & > div[class="ant-card-head"]{
+                color: $primary_color;
+                background-color: $secondary_color_50;
+            }
+        }
+        .EditButtonGroup {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            & > div:first-child {
+                margin-right: 10px;
+            }
+        }
+    }
+}

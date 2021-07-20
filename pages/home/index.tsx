@@ -20,17 +20,6 @@ const Home = (props) => {
         }
         setHasInfo(user.hasInfo);
     },[]);
-    // const hasInfo = React.useMemo(() => {
-    //     let obj = localStorage.getItem(LOCALSTORAGE_KEY);
-    //     if (!obj){
-    //         return false;
-    //     }
-    //     let user: LocalStorageModel = JSON.parse(obj);
-    //     if (!user){
-    //         return false;
-    //     }
-    //     return user.hasInfo;
-    // },[localStorage]);
 
     return <div className={style.background}>
         <img className={style.backgroundCurve} src="/icons/home/home.svg"></img>

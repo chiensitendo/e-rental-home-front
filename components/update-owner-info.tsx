@@ -8,13 +8,14 @@ import { updateOwnerInfo } from "apis/owner-api";
 import { GENDERS, LOCALSTORAGE_KEY, PROVINCES } from "libs/const";
 import { LocalStorageModel, RULE_TYPE } from "libs/types";
 import { createRules, openNotificationWithIcon } from "libs/ultility";
+import { NextRouter, useRouter } from "next/router";
 import React from "react";
 import style from "./update-owner-info.module.scss";
 
 const UpdateOwnerInfo = (props: Props) => {
     const {isVisible, onCancel} = props;
     const [user, setUser] = React.useState<LocalStorageModel>(null);
-
+    const router: NextRouter = useRouter();
     const onFinish = (values: any) => {
         console.log('Success:', values);
         let req: UpdateOwnerRequest = {
@@ -33,6 +34,7 @@ const UpdateOwnerInfo = (props: Props) => {
                 user.hasInfo = res.data.has_info;
                 localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(user));
                 onCancel && onCancel();
+                router.push("/owner/profile");
             }
             openNotificationWithIcon('success', "Cập nhật thành công! ", "");
         }).catch(err => {

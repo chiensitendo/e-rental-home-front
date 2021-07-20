@@ -1,3 +1,4 @@
+import UpdateOwnerInfo from "components/update-owner-info";
 import { LOCALSTORAGE_KEY } from "libs/const";
 import { LocalStorageModel } from "libs/types";
 import { openNotificationWithIcon } from "libs/ultility";
@@ -9,6 +10,7 @@ export default function withAuth(WrappedComponent) {
     return () => {
         const router: NextRouter= useRouter();
         const [isAuth, setIsAuth] = React.useState(false);
+        const [hasInfo, setHasInfo] = React.useState(false);
         React.useEffect(() => {
             try {
                 let obj = localStorage.getItem(LOCALSTORAGE_KEY);
@@ -16,10 +18,16 @@ export default function withAuth(WrappedComponent) {
                 if (obj === null){
                     openNotificationWithIcon('error', "Vui lòng đăng nhập!", "");
                     setIsAuth(false);
+                    setHasInfo(false);
                     router.push("/login");
                 } else {
                     let user: LocalStorageModel = JSON.parse(obj);
                     const currentTimestamp = new Date().getTime();
+                    if (!user){
+                        setHasInfo(false);
+                    } else {
+                        setHasInfo(user.hasInfo);
+                    }
                     if (currentTimestamp <= user.expiredTime) {
                         setIsAuth(true);
                     } else {
@@ -33,7 +41,24 @@ export default function withAuth(WrappedComponent) {
                 router.push("/login");
             }
         },[]);
-        return isAuth && <WrappedComponent />;
+        
+        React.useEffect(() => {
+            let obj = localStorage.getItem(LOCALSTORAGE_KEY);
+            if (!obj){
+                setHasInfo(false);
+                return;
+            }
+            let user: LocalStorageModel = JSON.parse(obj);
+            if (!user){
+                setHasInfo(false);
+                return;
+            }
+            setHasInfo(user.hasInfo);
+        },[]);
+        return isAuth && <>{!hasInfo &&<UpdateOwnerInfo isVisible = {!hasInfo} 
+        onCancel = {() => {
+            setHasInfo(true)}}
+    />}<WrappedComponent /></>;
     }
 }
 

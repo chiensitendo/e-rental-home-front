@@ -5,8 +5,8 @@ export interface OwnerInfoResponse extends Response {
     firstName: string;
     lastName: string;
     has_info: boolean;
-    gender: boolean;
-    provinceId: Number;
+    gender: number;
+    provinceId: number;
     address: string;
     email: string;
 }

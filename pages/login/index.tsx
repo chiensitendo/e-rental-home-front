@@ -38,7 +38,7 @@ const Login = (props) => {
                     email: !data.email ? data.userName : data.email
                 }
                 localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(user));
-                router.push("/home");
+                router.push("/owner/profile");
             }
             openNotificationWithIcon('success', "Đăng nhập thành công! ", "");
         }).catch((err) => {

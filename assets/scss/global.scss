@@ -15,6 +15,10 @@ h2 {
 p {
     color: $text_color;
 }
+.highlight_text {
+  color: $primary_color;
+  font-weight: bold;
+}
 .pc_block {
   @media screen and (max-width: $break-point-md) {
     display: none;
