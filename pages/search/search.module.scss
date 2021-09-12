@@ -1,0 +1,184 @@
+.search {
+    width: 100%;
+    .searchbar {
+        display: flex;
+        justify-content: center;
+        margin-top: 2em;
+
+        &__form {
+            width: 60vw;
+
+            display: flex;
+            justify-content: space-around;
+            
+            padding: 1.5em 0 0 0;
+
+            border: 1px solid #ddd;
+            border-radius: 12px;
+
+            box-shadow: -5px 6px 18px -1px rgba(0,0,0,0.48);
+            -webkit-box-shadow: -5px 6px 18px -1px rgba(0,0,0,0.48);
+            
+            &__menu {
+                height: 4vh;
+                padding: 0 2em 0 0;
+                border-right: 1px solid #ddd;
+            }
+            &__location {
+                width: calc(inherit / 5vw);
+                height: 4vh;
+                padding-right: 2em;
+                border-right: 1px solid #ddd;
+            
+                display: flex;
+                justify-content: space-between;
+
+                &__icon {
+
+                    & :first-child {
+                        font-size: 1.3em;
+                    }
+                }
+
+                & .provinceSelect {
+                    width: calc(inherit / 5vw);
+
+                    & :first-child {
+                        border: none;
+                        outline: none;
+                    }
+                }
+
+            }
+            &__price {
+                width: calc(inherit / 5vw);
+                height: 4vh;
+                padding-right: 2em;
+                border-right: 1px solid #ddd;
+                
+                display: flex;
+
+                &__icon {
+                    & :first-child {
+                        font-size: 1.3em;
+                    }
+                }
+
+                .priceSelect {
+                    width: 12em;
+
+                    & :first-child {
+                        border: none;
+                    }
+                }
+                
+                
+            }
+            &__textSearch {
+                display: flex;
+                &__icon {
+
+                    & :first-child {
+                        font-size: 1.3em;
+                    }
+                }
+
+                input {
+                    margin-left: 0.6em;
+                    border: none;
+                    outline: none;
+                    border-bottom: 1px solid #ddd;
+                    transition: 0.5s;
+                    width: 20em;
+                }
+
+                input:focus {
+                    border: none;
+                    outline: none;
+                    outline-width: 0;
+
+                    border-bottom: 1px solid #4fc3f7;
+                }
+            }
+            &__submit {
+                display: flex;
+
+                button {
+                    background-color: #ff9800;
+                    border: none;
+                    border-radius: 1em;
+                    width: 7em;
+                    color: #fff;
+                }
+
+            }
+        }
+    }
+
+    .search__result {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 1500px) {
+    .search {
+        .searchbar {
+            &__form {
+                display: flex;
+                justify-content: space-between;
+                flex-direction: row-reverse;
+
+                padding: 1.5em 1vw 0;
+                
+                &__menu {
+                    border-left: 1px solid #ddd;
+                    padding-left: 1vw;
+                    border-right: none;
+                    height: 3.5vh;
+                }
+                &__location, &__price {
+                    display: none;
+                }
+                &__textSearch {
+                    display: flex;
+                    &__icon {
+
+                        & :first-child {
+                            font-size: 1.3em;
+                            margin-top: .15em;
+                        }
+                    }
+    
+                    input {
+                        margin-left: 0.6em;
+                        border: none;
+                        outline: none;
+                        transition: 0.5s;
+                        width: 40vw;
+                    }
+    
+                    input:focus {
+                        border: none;
+                        outline: none;
+                    }
+                }
+                &__submit {
+                    display: none;
+                }
+            }
+        }
+    
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .search {
+        .searchbar {
+            &__form {
+                width: 90vw;
+            }
+        }
+    }
+}

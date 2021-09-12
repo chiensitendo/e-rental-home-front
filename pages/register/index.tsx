@@ -52,7 +52,7 @@ const Register = (props) => {
                             <img src = "/images/logo.png"/>
                         </div>
                         <div className = {style.forwardContainer}>
-                             <p>Đẫ có tài khoản?</p>
+                             <p>Đã có tài khoản?</p>
                             <DefaultButton type = "outline" onClick = {() => {router.push("/login")}}>Đăng nhập</DefaultButton>
                         </div>
                         <div className = {style.formContainer}>
@@ -107,7 +107,7 @@ const Register = (props) => {
                                     <Checkbox className = "checkbox">Đồng ý với các điều khoản và dịch vụ</Checkbox>
                                 </Form.Item>
                                 <Form.Item>
-                                    <DefaultButton  className = {style.submitButton} htmlType = "submit">Đăng nhập</DefaultButton>
+                                    <DefaultButton  className = {style.submitButton} htmlType = "submit">Đăng ký</DefaultButton>
                                 </Form.Item>
                             </Form>
                         </div>
