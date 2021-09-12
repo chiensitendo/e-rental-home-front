@@ -1,0 +1,113 @@
+.item__card {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+
+    width: 60vw;
+    height: 24vh;
+
+    border: 1px solid #fff;
+    border-radius: 12px;
+
+    padding: 1em;
+    margin: 0 0 2em 0;
+
+    -webkit-box-shadow: 6px 5px 12px 4px rgba(0,0,0,0.18); 
+    box-shadow: 6px 5px 12px 4px rgba(0,0,0,0.18);
+
+    &__image {
+        img {
+            width: 15vw;
+            height: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+    }
+
+    &__detail {
+
+        margin-left: 2em;
+
+        &__title {
+            font-weight: 600;
+            font-size: 1.5em;
+        }
+
+        &__address {
+            display: flex;
+            font-size: 1em;
+
+            &:first-child {
+                font-size: 160px;
+            }
+        }
+
+        &__rooms {
+            display: flex;
+            align-items: center;
+
+            &__acreage, &__bedroom, &__bathroom {
+                display: flex;
+                
+                p {
+                    margin-right: 12px;
+                }
+            }
+        }
+
+        &__price {
+            display: flex;
+        }
+
+    }
+
+    .saveBookmark {
+        position: absolute;
+        right: 1.5em;
+        top: 1.5em;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .item__card {
+        width: 90vw;
+        height: 80%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .item__card {
+        display: block;
+       
+        &__image {
+            img {
+                width: 100%;
+                height: 30vh;
+            }
+        }
+    
+        &__detail {
+            margin-left: 0;
+
+            &__bottomContent {
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: space-between;
+            }
+
+            &__price {
+                &:first-child {}
+            }
+        }
+    
+        .saveBookmark {
+            position: absolute;
+            right: 1em;
+            top: calc(100% - 6em);
+        }
+    }
+}
